@@ -1,0 +1,46 @@
+<nav xmlns:th="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+    class="navbar navbar-expand-lg navbar-light bg-light shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+    <!-- <span sec:authentication="name">Bob</span> -->
+    <div class="container-fluid">
+        <img th:src="@{/assets/images/logo.png}" style="width: 150px;">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ps-5" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/oder/list}">You Order</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasRole('STAF') or hasRole('DIRE')">
+                    <a class="nav-link active" aria-current="page" th:href="@{/admin/home/index}">Administration</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <th:block sec:authorize="!isAuthenticated()">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/sercurity/login/form}">Sign
+                                In</a>
+                        </li>
+                    </th:block>
+                    <th:block sec:authorize="isAuthenticated()">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/sercurity/logoff}">Sign Out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page">Welcome: <strong
+                                    th:text="${#authentication.name}"></strong> </a>
+                        </li>
+
+                    </th:block>
+                </ul>
+            </form>
+        </div>
+    </div>
+</nav>

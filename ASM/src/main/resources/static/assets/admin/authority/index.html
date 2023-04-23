@@ -1,0 +1,26 @@
+<div>
+    <div class="card">
+        <div class="row card-header">
+            <div class="col-8 d-flex justify-content-star">
+                Authorizing
+            </div>
+        </div>
+        <table class="table table-hover table-sm border border-info" >
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col"></th>
+                    <th scope="col" ng-repeat="role in roles" class="text-center">{{role.name}}</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider"></tbody>
+            <tbody class="table-hover" >
+                <tr ng-repeat="acc in admins">
+                    <td>{{acc.fullname}}</td>
+                    <th ng-repeat="role in roles" class="text-center">
+                        <input ng-checked="authority_of(acc,role)" ng-click="authority_changed(acc,role)" type="checkbox">
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

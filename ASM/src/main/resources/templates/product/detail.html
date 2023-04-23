@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+<body>
+    <main th:object="${item}">
+        <div class="border border-success text-center shadow p-3 mb-5 bg-body-tertiary rounded">
+            <img th:src="@{|/assets/images/*{image}}" class="img-fluid p-3" style="width: 300px;">
+        </div>
+        <div class="border border-success shadow p-3 mb-5 bg-body-tertiary rounded">
+            <div class="card-body">
+                <ul class="list-group border border-0 ">
+                    <li class="list-group-item border border-0" th:text="*{name}"></li>
+                    <li class="list-group-item border border-0" th:text="*{price}"></li>
+                    <li class="list-group-item border border-0" th:text="*{createDate}"></li>
+                    <li class="list-group-item border border-0" th:text="*{category.name}"></li>
+                </ul>
+            </div>
+            <div class="card-footer bg-transparent border-success mt-2">
+                <a href=""
+                    class="btn btn-outline-success btn-sm ">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-bag-check" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M10.854 8.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                        <path
+                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                    </svg> Mua Hàng</a></div>
+        </div>
+        <div class="list-group mt-3" xmlns:th="http://www.thymeleaf.org">
+            <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                Hàng cùng loại
+            </button>
+            <ul>
+                <li th:each=" p: ${item.category.products}">
+                    <a th:href="@{|/product/detail/${p.id}|}" >[[${p.name}]]</a>
+                </li>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>

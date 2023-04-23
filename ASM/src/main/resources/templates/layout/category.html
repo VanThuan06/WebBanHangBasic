@@ -1,0 +1,9 @@
+<div class="list-group mt-3" xmlns:th="http://www.thymeleaf.org">
+    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+        Category
+    </button>
+    <div>
+        <a th:href="@{|/product/list?cid=${c.id}}" type="button"  th:each=" c: ${cates}"
+        class="list-group-item list-group-item-action">[[${c.name}]]</a>
+    </div>
+</div>
