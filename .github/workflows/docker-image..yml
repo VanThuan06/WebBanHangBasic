@@ -17,7 +17,7 @@ jobs:
       - name: demo 
         run: cd C:\Users\VanThuan\Desktop\WebBanHangBasic\WebBanHangBasic\
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag demo:v${{ github.run_number }}
+        run: docker build . -t demo:v${{ github.run_number }}
       - name: Copy new env file
         run: cd /home/app && cp origin.env .env
       - name: Pass new version
