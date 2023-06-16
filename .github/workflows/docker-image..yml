@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ssw-be:v${{ github.run_number }}
+      - name: Copy new env file
+        run: cd /home/app && cp origin.env .env
+      - name: Pass new version
+        run: cd /home/app && sh script.sh SSW_BE_VERSION ${{ github.run_number }} .env
+      - name: Remove old version
+        run: cd /home/app && docker compose rm ssw-be
+      - name: Up new version
+        run: cd /home/app && docker compose up -d ssw-be
