@@ -13,9 +13,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: demo 
+      - run : cd C:\Users\VanThuan\Desktop\WebBanHangBasic\WebBanHangBasic
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        run: cd C:\Users\VanThuan\Desktop\WebBanHangBasic\WebBanHangBasic && docker build . --file Dockerfile --tag demo:v${{ github.run_number }}
+        run: docker build . --file Dockerfile --tag demo:v${{ github.run_number }}
       - name: Copy new env file
         run: cd /home/app && cp origin.env .env
       - name: Pass new version
