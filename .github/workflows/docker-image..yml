@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: demo 
-      - run: cd C:\Users\VanThuan\Desktop\WebBanHangBasic\WebBanHangBasic
+        run: cd C:\Users\VanThuan\Desktop\WebBanHangBasic\WebBanHangBasic
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag demo:v${{ github.run_number }}
       - name: Copy new env file
